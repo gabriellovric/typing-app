@@ -1,0 +1,7 @@
+- show user if he pressed the wrong key
+- add timer
+- calculate stats
+- when user finishes typing show score
+- add cancel / back button
+- expand text generation function
+- add some styling

@@ -1,27 +1,17 @@
-<script>
-export default {
-    data() {
-        return {
-            pointer: 0,
-        };
-    },
-    props: {
-        text: String
-    },
-    methods: {
-        validateKey(event) {
-            if (event.key === this.text[this.pointer]) {
-                this.pointer++;
-            }
-        }
-    },
-    mounted() {
-        window.addEventListener('keyup', this.validateKey)
-    },
-    unmounted() {
-        window.removeEventListener('keyup', this.validateKey);
+<script setup>
+import { onMounted, onUnmounted, ref } from 'vue';
+
+const props = defineProps({ text: Array });
+const pointer = ref(0);
+
+function validateKey(event) {
+    if (event.key === props.text[pointer.value]) {
+        pointer.value++;
     }
 }
+
+onMounted(() => window.addEventListener('keyup', validateKey));
+onUnmounted(() => window.removeEventListener('keyup', validateKey));
 </script>
 
 <template>

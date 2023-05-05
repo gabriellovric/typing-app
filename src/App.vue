@@ -1,33 +1,22 @@
-<script>
+<script setup>
+import { ref } from 'vue';
 import TypingPrompt from './components/TypingPrompt.vue';
 import TypingSettings from './components/TypingSettings.vue';
 
-export default {
-  data() {
-    return {
-      text: null,
-    };
-  },
-  methods: {
-    startTyping([keys, length]) {
-      let a = () => {
-        return keys[Math.floor(Math.random() * keys.length)]
-      }
-      this.text = Array.from({ length: length }, a);
-      console.log(this.text)
-    },
-  },
-  components: { TypingSettings, TypingPrompt }
+const text = ref([])
+function startTyping([keys, length]) {
+  let randomKey = () => keys[Math.floor(Math.random() * keys.length)];
+  text.value = Array.from({ length: length }, randomKey);
 }
 </script>
 
 <template>
   <TypingSettings
-    v-if="!text"
+    v-if="text.length === 0"
     @start="startTyping"
   />
   <TypingPrompt
-    v-if="text"
+    v-if="text.length > 0"
     :text="text"
   />
 </template>

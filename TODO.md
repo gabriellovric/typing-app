@@ -4,4 +4,3 @@
 - when user finishes typing show score
 - add cancel / back button
 - expand text generation function
-- add some styling

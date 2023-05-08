@@ -21,21 +21,31 @@ function start() {
 </script>
 
 <template>
-  <select
-    v-model="selectedKeysets"
-    multiple
-  >
-    <option
-      v-for="([key, value]) in availableKeysets"
-      :value="key"
+  <form>
+    <select
+      v-model="selectedKeysets"
+      multiple
     >
-      {{ value }}
-    </option>
-  </select>
+      <option
+        v-for="([key, value]) in availableKeysets"
+        :value="key"
+      >
+        {{ value }}
+      </option>
+    </select>
 
-  <input v-model="textLength" />
-  <button
-    v-if="selectedKeysets.length > 0"
-    @click="start"
-  >Start</button>
+    <label for="textLength">
+      Text Length
+      <input
+        type="number"
+        id="textLength"
+        v-model="textLength"
+        required
+      />
+    </label>
+    <button
+      v-if="selectedKeysets.length > 0"
+      @click="start"
+    >Start</button>
+  </form>
 </template>
